@@ -1,5 +1,11 @@
-FROM node:alpine
+ARG ARCH=node:alpine
+# arm32v7/node
+# yobasystems/alpine-nodejs:arm32v7
+FROM ${ARCH}
 
+COPY ./qemu-arm-static /usr/bin/qemu-arm-static
+
+CMD mkdir -p /usr/src/app
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -16,4 +22,5 @@ RUN npm install
 COPY index.js .
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+
+ENTRYPOINT [ "npm", "start" ]
