@@ -1,2 +1,3 @@
-dockenode_modules
+node_modules
+docker
 npm-debug.log

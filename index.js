@@ -20,6 +20,7 @@ const CAMERA_STATUS_OFF = 'off'
  */
 app.use((req, res, next) => {
     console.log(req.url + ' from ' + req.ip)
+    
     next()
 })
 
