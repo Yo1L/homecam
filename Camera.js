@@ -63,7 +63,7 @@ module.exports = class Camera {
     }
 
     /**
-     * get human readable status of the camera and send result to the slack room
+     * get human readable status of the camera
      */
     getStatus() {
         return new Promise( (resolve, reject) => {
