@@ -20,8 +20,6 @@ module.exports = class Camera {
         return new Promise( (resolve, reject) => {
             axios.get(this.url, {
                 params: params,
-            },
-            {
                 timeout: this.timeout,
                 auth: {
                     username: this.username,
@@ -31,24 +29,34 @@ module.exports = class Camera {
             .then(response => {
                 var result = true
                 Object.keys(params).forEach( param => {
+                    
+                    if (!response || !response.data) {
+                        reject("invalid response from camera")
+                        return
+                    }
+                    
+                    // "OK getprivacystate=0 
                     const regex = new RegExp('(.*) ' + param + '(=([01]))?')
                     const matches = response.data.match(regex)
-
+                        
                     if (matches) {
                         if (matches[1] != 'OK') {
                             result = false
                         } 
-                        if( get_first_value && matches.length > 2 ) {
+                        if( result && get_first_value && matches.length > 2 ) {
                             // return the first value for get
                             result = matches[3]
                         }
+                    }
+                    else {
+                        result = false
                     }
                 })
 
                 resolve(result)
             })
             .catch(error => {
-                //console.error(error)
+                console.error(error)
                 reject(error)
             })
         })
@@ -75,8 +83,11 @@ module.exports = class Camera {
         })
     }
 
-    setState(state)
-    {
+    /**
+     * modify privacy state of the camera
+     * @param {string} state on|off
+     */
+    setState(state) {
         return new Promise( (resolve, reject) => {
             let params = {
                 'setprivacycontrol': 1,
