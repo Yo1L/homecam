@@ -18,10 +18,10 @@ module.exports = class Camera {
      */
     send(params, get_first_value = false) {
         return new Promise( (resolve, reject) => {
-            axios({
-                url: this.url,
-                method: 'get',
+            axios.get(this.url, {
                 params: params,
+            },
+            {
                 timeout: this.timeout,
                 auth: {
                     username: this.username,
@@ -48,7 +48,7 @@ module.exports = class Camera {
                 resolve(result)
             })
             .catch(error => {
-                console.error(error)
+                //console.error(error)
                 reject(error)
             })
         })
