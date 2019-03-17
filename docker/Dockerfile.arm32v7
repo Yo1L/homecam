@@ -1,4 +1,4 @@
-FROM yobasystems/alpine-nodejs:armhf
+FROM yobasystems/alpine-nodejs:min-arm32v7
 
 COPY ./qemu-arm-static /usr/bin/qemu-arm-static
 
