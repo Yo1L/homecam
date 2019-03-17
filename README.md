@@ -1,7 +1,18 @@
-# homecam
-Web services interface for my DLINK camera (reverse engineered).
+# HomeCam
+Start/Stop your camera from IFTT or a basic curl request.  
+I did not want to open my camera to IFTT through any DLink cloud service.
+I wanted full controll so I implemented it on my own (reverse engineered).
 
-## Docker
+Here are the current endpoints:
+
+Endpoint | Description 
+--- | ---
+**/camera/status** | get human readable status of the camera ("ON" or "OFF") and send the result to slack 
+**/camera/state/on** | switch on the camera 
+**/camera/state/off** | switch off the camera 
+**/camera/toggle** | toggle status of the camera 
+
+## How it works (Docker) 
 
 My image support multiple architectures such as x86-64 and arm32v7. I use the docker manifest for multi-platform awareness.
 
@@ -81,15 +92,6 @@ HTTP_PORT | WEB Port for this server
 SLACK_WEBHOOK_URL | Slack webhook url
 SLACK_ROOM | slack room to send the status notification message 
 SLACK_ICON | Icon
-
-## API
-
-Endpoint | Description 
---- | ---
-**/camera/status** | get human readable status of the camera ("ON" or "OFF") and send the result to slack 
-**/camera/state/on** | switch on the camera 
-**/camera/state/off** | switch off the camera 
-**/camera/toggle** | toggle status of the camera 
 
 ## Unit tests
 
