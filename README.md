@@ -12,6 +12,11 @@ Endpoint | Description
 **/camera/state/off** | switch off the camera 
 **/camera/toggle** | toggle status of the camera 
 
+Retrieving your status with curl:
+```
+curl http://localhost:3000/camera/status
+```
+
 ## How it works (Docker) 
 
 My image support multiple architectures such as x86-64 and arm32v7. I use the docker manifest for multi-platform awareness.
