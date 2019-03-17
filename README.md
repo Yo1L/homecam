@@ -1,6 +1,6 @@
 # HomeCam
-Start/Stop your camera from IFTT or a basic curl request.  
-I did not want to open my camera to IFTT through any DLink cloud service.
+Start/Stop your DLINK DCS-5222L camera from IFTT or a basic curl request.  
+I did not want to open my camera to IFTT through any DLink cloud service.  
 I wanted full controll so I implemented it on my own (reverse engineered).
 
 Here are the current endpoints:
