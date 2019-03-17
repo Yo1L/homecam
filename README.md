@@ -81,6 +81,7 @@ HTTP_PORT | WEB Port for this server
 SLACK_WEBHOOK_URL | Slack webhook url
 SLACK_ROOM | slack room to send the status notification message 
 SLACK_ICON | Icon
+
 ## API
 
 Endpoint | Description 
@@ -96,3 +97,7 @@ Unit tests are available to check the Camera proxy which is responsible for send
 ```
 npm run test
 ```
+
+## TODO
+*  [ ] Authentification
+*  [ ] Automate docker manifest creation
