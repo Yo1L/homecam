@@ -1,4 +1,4 @@
-const axios = require('axios')
+const rp = require('request-promise')
 
 const STATUS_ON = 'on'
 const STATUS_OFF = 'off'
@@ -18,26 +18,27 @@ module.exports = class Camera {
      */
     send(params, get_first_value = false) {
         return new Promise( (resolve, reject) => {
-            axios.get(this.url, {
-                params: params,
+            rp.get({
+                url: this.url,
+                qs: params,
                 timeout: this.timeout,
                 auth: {
-                    username: this.username,
-                    password: this.password 
+                    user: this.username,
+                    pass: this.password,
+                    sendImmediately: false
                 },
             })
             .then(response => {
                 var result = true
                 Object.keys(params).forEach( param => {
-                    
-                    if (!response || !response.data) {
+                    if (!response) {
                         reject("invalid response from camera")
                         return
                     }
                     
                     // "OK getprivacystate=0 
                     const regex = new RegExp('(.*) ' + param + '(=([01]))?')
-                    const matches = response.data.match(regex)
+                    const matches = response.match(regex)
                         
                     if (matches) {
                         if (matches[1] != 'OK') {
